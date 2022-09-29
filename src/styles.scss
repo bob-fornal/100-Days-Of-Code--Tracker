@@ -1,0 +1,27 @@
+
+:root {
+  --color-white: white;
+  --color-off-white: #f1f1f1;
+  --color-black: black;
+  --color-off-black: #1f1f1f;
+  --color-highlight: #04AA6D;
+}
+
+body {
+  font-family: Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.wrapper {
+  display: flex;
+
+  .wrapper--menu {
+    width: 150px;
+  }
+  .wrapper--content {
+    background-color: var(--color-off-white);
+    flex-grow: 1;
+    padding: 1em;
+  }
+}
