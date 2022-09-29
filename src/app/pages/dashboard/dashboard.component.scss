@@ -10,6 +10,7 @@
       display: block;
       text-align: center;
       border: 1px solid var(--color-silver);
+      border-radius: 6px;
       padding: 0.5em 1em;
       position: relative;
 
@@ -25,13 +26,15 @@
         opacity: 0;
         visibility: hidden;
         
-        width: 180px;        
+        font-size: 0.8em;
+        box-sizing: border-box;
+        width: 180px;
         background-color: var(--color-tooltip);
         color: var(--color-off-white);
         
         text-align: center;
         border-radius: 6px;
-        padding: 0.5em;
+        padding: 1em;
         transition: opacity .6s;
         
         /* Position the tooltip */
