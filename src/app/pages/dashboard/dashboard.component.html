@@ -1,2 +1,13 @@
 
 <app-title>Dashboard</app-title>
+
+<div class="days">
+  <span class="day" *ngFor="let day of days; let i = index;">
+    <span
+      class="status" [class.active]="day.done === true"
+      (click)="selectDay(i)">
+      <item-svg [item]="day"></item-svg>
+    </span>
+    <span class="number">{{ day.number }}</span>
+  </span>
+</div>

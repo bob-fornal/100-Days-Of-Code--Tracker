@@ -1,0 +1,29 @@
+
+.days {
+
+  .day {
+    display: inline-block;
+    padding: 1em 0.5em 0 0.5em;
+    width: 50px;
+
+    .status {
+      display: block;
+      text-align: center;
+      border: 1px solid var(--color-silver);
+      padding: 0.5em 1em;
+
+      &:not(.active) {
+        cursor: pointer;
+      }
+      &.active {
+        background-color: var(--color-highlight);
+        color: var(--color-off-white);
+      }
+    }
+
+    .number {
+      display: block;
+      text-align: center;
+    }
+  }
+}

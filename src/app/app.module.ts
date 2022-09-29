@@ -11,6 +11,7 @@ import { GoalsComponent } from './pages/goals/goals.component';
 
 import { MenuComponent } from './features/menu/menu.component';
 import { TitleComponent } from './shared/title/title.component';
+import { ItemSvgComponent } from './shared/item-svg/item-svg.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TitleComponent } from './shared/title/title.component';
     DetailsComponent,
     GoalsComponent,
     MenuComponent,
-    TitleComponent
+    TitleComponent,
+    ItemSvgComponent
   ],
   imports: [
     BrowserModule,

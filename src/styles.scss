@@ -5,6 +5,7 @@
   --color-black: black;
   --color-off-black: #1f1f1f;
   --color-highlight: #04AA6D;
+  --color-silver: silver;
 }
 
 body {
@@ -17,11 +18,11 @@ body {
   display: flex;
 
   .wrapper--menu {
-    width: 150px;
+    flex: 0 0 150px;
   }
   .wrapper--content {
     background-color: var(--color-off-white);
-    flex-grow: 1;
+    flex: 1;
     padding: 1em;
   }
 }

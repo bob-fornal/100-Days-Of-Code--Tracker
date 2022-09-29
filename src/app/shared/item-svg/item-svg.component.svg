@@ -1,0 +1,8 @@
+<svg class="svg-root" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <g *ngIf="item.done === true" class="item-x">
+    <path d="M 750.704 381.37 H 833.844 V 599.613 H 1052.087 V 682.753 H 833.844 V 900.996 H 750.704 V 682.753 H 532.461 V 599.613 H 750.704 Z" style="stroke-linecap: round; stroke-linejoin: round;" transform="matrix(0.707106, 0.707107, -0.707107, 0.707106, 146.602112, -761.123901)" bx:shape="cross 532.461 381.37 519.626 519.626 83.14 83.14 0.5 1@c65f811e"/>
+  </g>
+  <g *ngIf="item.done === false" class="item-o">
+    <path d="M 250.228 247.628 m -229.441 0 a 229.441 219.673 0 1 0 458.882 0 a 229.441 219.673 0 1 0 -458.882 0 Z M 250.228 247.628 m -137.664 0 a 137.664 131.803 0 0 1 275.328 0 a 137.664 131.803 0 0 1 -275.328 0 Z" style="" bx:shape="ring 250.228 247.628 137.664 131.803 229.441 219.673 1@3e540b81"/>
+  </g>
+</svg>
