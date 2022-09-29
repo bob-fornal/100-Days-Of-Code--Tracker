@@ -10,6 +10,6 @@ import { Item } from '@core/interfaces/item';
 })
 export class ItemSvgComponent {
 
-  @Input('item') item: Item = { number: -1, done: false };
+  @Input('item') item: Item = { number: -1, note: '', done: false };
 
 }

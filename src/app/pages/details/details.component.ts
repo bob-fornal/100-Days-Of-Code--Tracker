@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component } from '@angular/core';
+
+import { StorageService } from '@core/services/storage.service';
+
+import { Item } from '@core/interfaces/item';
+import { Structure } from '@core/interfaces/strucuture';
 
 @Component({
   selector: 'app-details',
@@ -6,11 +12,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details.component.scss'],
   host: {'class': 'wrapper--content'}
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent {
 
-  constructor() { }
+  days: Array<Item> = [];
+  _structure: Structure | null = null;
 
-  ngOnInit(): void {
+  constructor(
+    public storage: StorageService
+  ) {
+    this.storage.structure.subscribe(this.handleStructureChange);
   }
+
+  handleStructureChange = (structure: Structure): void => {
+    this._structure = { ...structure };
+    this.days = structure.days;
+  };
+
+  saveNote = (index: number): void => {
+    const id: string = `note-${ index }`;
+    const value = (<HTMLInputElement>document.getElementById(id)).value;
+    if (value.length === 0) return;
+
+    this._structure!.days[index].note = value;
+    this._structure!.days[index].done = true;
+    this.storage.structureChange(this._structure!);
+  };
 
 }

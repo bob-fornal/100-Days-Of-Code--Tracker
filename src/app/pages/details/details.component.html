@@ -1,2 +1,21 @@
 
 <app-title>Details</app-title>
+
+<div class="details">
+  <!-- Not Done -->
+  <div class="detail" *ngFor="let day of days; let i = index">
+    <ng-container *ngIf="day.done === false">
+      <span class="day">{{ day.number }}</span>
+      <input [id]="'note-' + i" class="note" [value]="day.note" placeholder="Note" />
+      <button class="button" (click)="saveNote(i)">Save</button>
+    </ng-container>
+  </div>
+  <!-- Done -->
+  <div class="detail" *ngFor="let day of days; let i = index">
+    <ng-container *ngIf="day.done === true">
+      <span class="day">{{ day.number }}</span>
+      <span class="note">{{ day.note }}</span>
+    </ng-container>
+  </div>
+
+</div>

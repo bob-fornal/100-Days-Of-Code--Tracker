@@ -1,7 +1,10 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { StorageService } from '@core/services/storage.service';
 
 import { Item } from '@core/interfaces/item';
+import { Structure } from '@core/interfaces/strucuture';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,24 +12,25 @@ import { Item } from '@core/interfaces/item';
   styleUrls: ['./dashboard.component.scss'],
   host: {'class': 'wrapper--content'}
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   days: Array<Item> = [];
+  _structure: Structure | null = null;
 
-  constructor() {
-    for (let i = 0, len = 100; i < len; i++) {
-      this.days.push({ number: i + 1, done: false });
-    }
-    this.days[0].done = true;
-    this.days[1].done = true;
-    this.days[2].done = true;
+  constructor(
+    private storage: StorageService
+  ) {
+    this.storage.structure.subscribe(this.handleStructureChange);
   }
 
-  ngOnInit(): void {
-  }
+  handleStructureChange = (structure: Structure): void => {
+    this._structure = { ...structure };
+    this.days = structure.days;
+  };
 
   selectDay = (index: number): void => {
-    this.days[index].done = true;
+    this._structure!.days[index].done = true;
+    this.storage.structureChange(this._structure!);
   };
 
 }

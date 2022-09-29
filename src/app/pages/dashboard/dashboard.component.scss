@@ -11,6 +11,7 @@
       text-align: center;
       border: 1px solid var(--color-silver);
       padding: 0.5em 1em;
+      position: relative;
 
       &:not(.active) {
         cursor: pointer;
@@ -18,6 +19,43 @@
       &.active {
         background-color: var(--color-highlight);
         color: var(--color-off-white);
+      }
+
+      .tooltip-text {
+        opacity: 0;
+        visibility: hidden;
+        
+        width: 180px;        
+        background-color: var(--color-tooltip);
+        color: var(--color-off-white);
+        
+        text-align: center;
+        border-radius: 6px;
+        padding: 0.5em;
+        transition: opacity .6s;
+        
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+        top: 90%;
+        left: 50%;
+        margin-left: -90px;
+      }
+
+      .tooltip-text::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #555 transparent;
+      }
+
+      &:hover .tooltip-text {
+        opacity: 1;
+        visibility: visible;
       }
     }
 
