@@ -17,12 +17,15 @@
 
 <div class="days">
   <span class="day" *ngFor="let day of days; let i = index;">
-    <span
-      class="status" [class.active]="day.done === true"
+    
+    <span class="status"
+      [class.active]="day.done === true"
       (click)="toggleDay(i)">
       <item-image [item]="day"></item-image>
       <span *ngIf="day.note.length > 0" class="tooltip-text">{{ day.note }}</span>
     </span>
+
     <span class="number">{{ day.number }}</span>
+
   </span>
 </div>

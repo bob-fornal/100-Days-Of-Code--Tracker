@@ -25,7 +25,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       document.body.appendChild(this.element);
 
       this.element.addEventListener('click', (el: any) => {
-        if (el.target.className === 'jw-modal') {
+        if (['days-modal', 'days-modal-background'].includes(el.target.className) === true) {
           this.close();
         }
       });
@@ -40,11 +40,11 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     open(): void {
       this.element.style.display = 'block';
-      document.body.classList.add('jw-modal-open');
+      document.body.classList.add('days-modal-open');
     }
 
     close(): void {
       this.element.style.display = 'none';
-      document.body.classList.remove('jw-modal-open');
+      document.body.classList.remove('days-modal-open');
     }
 }
