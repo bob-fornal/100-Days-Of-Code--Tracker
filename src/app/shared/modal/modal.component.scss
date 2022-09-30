@@ -1,0 +1,42 @@
+days-modal {
+  display: none;
+
+  .days-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 1000;
+    
+    overflow: auto;
+    text-align: center;
+
+    .days-modal-body {
+      padding: 20px;
+      background: #fff;
+      display: inline-block;
+      width: 450px;
+
+      margin: 40px;
+    }
+  }
+
+  .days-modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background-color: #000;
+    opacity: 0.75;
+    
+    z-index: 900;
+  }
+}
+
+body.days-modal-open {
+  overflow: hidden;
+}

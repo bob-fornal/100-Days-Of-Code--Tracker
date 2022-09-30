@@ -1,11 +1,25 @@
 
 <app-title>Dashboard</app-title>
 
+<days-modal id="getNotesModal">
+  <h1>Notes for Day {{ selectedDay.number }}</h1>
+  <input type="text" [(ngModel)]="selectedDay.note" />
+  <button (click)="closeNotesModal()">Close</button>
+</days-modal>
+
+<div class="functionality use-notes">
+  <input
+    type="checkbox" id="useNotesInput"
+    [(ngModel)]="useNotes"
+    [ngModelOptions]="{ standalone: true }" />
+  <label for="useNotesInput">Use Notes</label>
+</div>
+
 <div class="days">
   <span class="day" *ngFor="let day of days; let i = index;">
     <span
       class="status" [class.active]="day.done === true"
-      (click)="selectDay(i)">
+      (click)="toggleDay(i)">
       <item-image [item]="day"></item-image>
       <span *ngIf="day.note.length > 0" class="tooltip-text">{{ day.note }}</span>
     </span>
