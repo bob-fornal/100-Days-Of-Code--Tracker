@@ -11,7 +11,7 @@ import { GoalsComponent } from './pages/goals/goals.component';
 
 import { MenuComponent } from './features/menu/menu.component';
 import { TitleComponent } from './shared/title/title.component';
-import { ItemSvgComponent } from './shared/item-svg/item-svg.component';
+import { ItemImageComponent } from './shared/item-image/item-image.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { ItemSvgComponent } from './shared/item-svg/item-svg.component';
     GoalsComponent,
     MenuComponent,
     TitleComponent,
-    ItemSvgComponent
+    ItemImageComponent
   ],
   imports: [
     BrowserModule,
