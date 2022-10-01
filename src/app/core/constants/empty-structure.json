@@ -1,4 +1,6 @@
 {
+  "useNotes": true,
+
   "days": [
     { "number": 1, "note": "", "done": false },
     { "number": 2, "note": "", "done": false },

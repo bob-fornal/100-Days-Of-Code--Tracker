@@ -30,6 +30,7 @@ export class DashboardComponent {
   handleStructureChange = (structure: Structure): void => {
     this._structure = { ...structure };
     this.days = structure.days;
+    this.useNotes = structure.useNotes;
   };
 
   selectedDay: Item = { number: -1, done: false, note: '' };

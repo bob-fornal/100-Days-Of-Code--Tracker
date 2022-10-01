@@ -2,9 +2,13 @@
 <app-title>Dashboard</app-title>
 
 <days-modal id="getNotesModal">
-  <h1>Notes for Day {{ selectedDay.number }}</h1>
-  <input type="text" [(ngModel)]="selectedDay.note" />
-  <button (click)="closeNotesModal()">Close</button>
+  <div class="modal-title">Notes for Day {{ selectedDay.number }}</div>
+  <div class="modal-body">
+    <input type="text" [(ngModel)]="selectedDay.note" placeholder="Note" />
+  </div>
+  <div class="modal-actions">
+    <button (click)="closeNotesModal()">Close</button>
+  </div>
 </days-modal>
 
 <div class="functionality use-notes">
