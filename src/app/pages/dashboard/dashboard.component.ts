@@ -33,6 +33,12 @@ export class DashboardComponent {
     this.useNotes = structure.useNotes;
   };
 
+  toggleUseNotes = (): void => {
+    const useNotes: boolean = !this._structure!.useNotes;
+    this._structure!.useNotes = useNotes;
+    this.storage.structureChange(this._structure!);
+  };
+
   selectedDay: Item = { number: -1, done: false, note: '' };
   selectedIndex: number = -1;
   toggleDay = (index: number): void => {
