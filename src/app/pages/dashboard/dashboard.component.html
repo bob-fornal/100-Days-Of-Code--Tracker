@@ -4,18 +4,16 @@
 <days-modal id="getNotesModal">
   <div class="modal-title">Notes for Day {{ selectedDay.number }}</div>
   <div class="modal-body">
-    <span class="group">
-      <input type="text"
-        id="modalNote"
-        class="input" required=""
-        [(ngModel)]="selectedDay.note" />
-      <span class="highlight"></span>
-      <span class="bar"></span>
-      <label for="modalNote">Note</label>
+    <span class="content">
+      <textarea
+        id="note" class="textarea"
+        placeholder="Note"
+        [(ngModel)]="selectedDay.note"
+        rows="5" cols="24"></textarea>
     </span>
   </div>
   <div class="modal-actions">
-    <button class="btn" (click)="closeNotesModal()">Close</button>
+    <button class="btn" (click)="closeNotesModal()">Save</button>
   </div>
 </days-modal>
 

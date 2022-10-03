@@ -1,0 +1,44 @@
+
+.details {
+  display: flex;
+  flex-direction: row;
+
+  .detail-wrapper {
+    flex-grow: 1;
+  }
+}
+
+.detail {
+
+  .card {
+    align-items: start;
+    display: flex;
+    flex-direction: row;
+
+    border: 1px solid black;
+    border-radius: 0.5em;
+    margin: 1em;
+    padding: 1.25em;
+    width: calc(100% - 2em);
+
+    &.done {
+      background-color: var(--color-highlight);
+    }
+    &.not-done {
+      background-color: var(--color-toolbar);
+    }
+
+    .day {
+      flex: 0 0 2em;
+      text-align: right;
+      padding-right: 0.5em;
+    }
+    .content {
+      flex-grow: 5;
+    }
+    .btn {
+      flex-grow: 2;
+    }
+  }
+
+}

@@ -3,19 +3,44 @@
 
 <div class="details">
   <!-- Not Done -->
-  <div class="detail" *ngFor="let day of days; let i = index">
-    <ng-container *ngIf="day.done === false">
-      <span class="day">{{ day.number }}</span>
-      <input [id]="'note-' + i" class="note" [value]="day.note" placeholder="Note" />
-      <button class="button" (click)="saveNote(i)">Save</button>
-    </ng-container>
+  <div class="detail-wrapper">
+    <div class="detail" *ngFor="let day of days; let i = index">
+      <ng-container *ngIf="day.done === false">
+        <div class="card not-done">
+          <span class="day">{{ day.number }}</span>
+
+          <span class="content">
+            <textarea
+              [id]="'note-' + i" class="textarea"
+              placeholder="Note"
+              [(ngModel)]="day.note"
+              rows="5" cols="24"></textarea>
+          </span>
+
+          <button class="btn" (click)="saveNote(i)">Save</button>
+        </div>
+      </ng-container>
+    </div>
   </div>
   <!-- Done -->
-  <div class="detail" *ngFor="let day of days; let i = index">
-    <ng-container *ngIf="day.done === true">
-      <span class="day">{{ day.number }}</span>
-      <span class="note">{{ day.note }}</span>
-    </ng-container>
+  <div class="detail-wrapper">
+    <div class="detail" *ngFor="let day of days; let i = index">
+      <ng-container *ngIf="day.done === true">
+        <div class="card done">
+          <span class="day">{{ day.number }}</span>
+
+          <span class="content">
+            <textarea
+              [id]="'note-' + i" class="textarea"
+              placeholder="Note"
+              [(ngModel)]="day.note"
+              rows="5" cols="24"></textarea>
+          </span>
+
+          <button class="btn" (click)="saveNote(i)">Save</button>
+        </div>
+      </ng-container>
+    </div>
   </div>
 
 </div>
