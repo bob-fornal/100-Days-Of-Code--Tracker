@@ -1,5 +1,5 @@
 
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ModalService } from '@shared/modal';
 import { StorageService } from '@core/services/storage.service';
