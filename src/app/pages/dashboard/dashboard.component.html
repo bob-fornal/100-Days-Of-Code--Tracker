@@ -1,29 +1,19 @@
 
 <app-title>Dashboard</app-title>
 
-<days-modal id="getNotesModal">
-  <div class="modal-title">Notes for Day {{ selectedDay.number }}</div>
-  <div class="modal-body">
-    <span class="content">
-      <textarea
-        id="note" class="textarea"
-        placeholder="Note"
-        [(ngModel)]="selectedDay.note"
-        rows="5" cols="24"></textarea>
-    </span>
-  </div>
-  <div class="modal-actions">
-    <button class="btn" (click)="closeNotesModal()">Save</button>
-  </div>
-</days-modal>
-
 <div class="toolbar">
-  <input
-    type="checkbox" id="useNotesInput"
-    [(ngModel)]="useNotes"
-    [ngModelOptions]="{ standalone: true }"
-    (change)="toggleUseNotes()" />
-  <label for="useNotesInput">Use Notes</label>
+  <span class="toolbar-item">
+    <input
+      type="checkbox" id="useNotesInput"
+      [(ngModel)]="useNotes"
+      [ngModelOptions]="{ standalone: true }"
+      (change)="toggleUseNotes()" />
+    <label for="useNotesInput">Use Notes</label>
+  </span>
+
+  <span class="toolbar-item">
+    <button class="btn" (click)="saveData()">Save Data</button>
+  </span>
 </div>
 
 <div class="days">
@@ -40,3 +30,34 @@
 
   </span>
 </div>
+
+<!-- MODALS -->
+<days-modal id="getNotesModal">
+  <div class="modal-title">Notes for Day {{ selectedDay.number }}</div>
+  <div class="modal-body">
+    <span class="content">
+      <textarea
+        id="note" class="textarea"
+        placeholder="Note"
+        [(ngModel)]="selectedDay.note"
+        rows="5" cols="24"></textarea>
+    </span>
+  </div>
+  <div class="modal-actions">
+    <button class="btn" (click)="closeNotesModal()">Save</button>
+  </div>
+</days-modal>
+
+<days-modal id="getFilename">
+  <div class="modal-title">Filename</div>
+  <div class="modal-body">
+    <span class="content">
+      <input class="filename"
+        placeholder="Filename"
+        [(ngModel)]="selectFilename" />
+    </span>
+  </div>
+  <div class="modal-actions">
+    <button class="btn" (click)="closeGetFilename()">Save</button>
+  </div>
+</days-modal>

@@ -57,10 +57,41 @@ export class DashboardComponent {
     }
   };
 
-  closeNotesModal = () => {
+  closeNotesModal = (): void => {
     this._structure!.days[this.selectedIndex].note = this.selectedDay.note;
     this.storage.structureChange(this._structure!);
     this.modalService.close('getNotesModal');
+  };
+
+  selectFilename: string = '';
+  saveData = (): void => {
+    const date: string = (new Date()).toISOString().split('T')[0];
+    this.selectFilename = '100DaysOfCode--' + date + '.json';
+    this.modalService.open('getFilename');
+  };
+
+  closeGetFilename = (): void => {
+    const filename: string = this.checkFilename(this.selectFilename);
+    console.log(filename);
+
+    const a = document.createElement('a');
+    const blob = new Blob([JSON.stringify(this._structure!, null, 2)], { type: 'application/json' });
+    a.href = URL.createObjectURL(blob);
+    
+    a.setAttribute('download', filename);
+    console.log(filename);
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    this.modalService.close('getFilename');
+  };
+
+  checkFilename = (name: string): string => {
+    let [ filename, extension ] = name.split('.');
+    console.log(name, filename, extension);
+    return filename + (extension === undefined ? '.json' : extension);
   };
 
 }
