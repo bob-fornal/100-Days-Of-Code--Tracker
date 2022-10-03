@@ -3,6 +3,10 @@
   background-color: var(--color-toolbar);
   margin-top: 0.5em;
   padding: 0.5em 1em;
+
+  .toolbar-item {
+    margin-left: 1em;
+  }
 }
 
 .days {
@@ -71,5 +75,40 @@
       display: block;
       text-align: center;
     }
+  }
+}
+
+.filename {
+  width: 100%;
+}
+
+.drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  width: 100%;
+  font-family: sans-serif;
+  margin: 100px auto;
+  padding: 20px;
+
+  &.highlight {
+    border-color: purple;
+  }
+  p {
+    margin-top: 0;
+  }
+  .load-button {
+    display: inline-block;
+    padding: 10px;
+    background: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+
+    &:hover {
+      background: #ddd;
+    }
+  }
+  #loadFileElement {
+    display: none;
   }
 }
