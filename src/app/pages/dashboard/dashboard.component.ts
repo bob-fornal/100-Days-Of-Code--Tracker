@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 
 import { ModalService } from '@shared/modal';
 import { StorageService } from '@core/services/storage.service';
@@ -92,6 +92,25 @@ export class DashboardComponent {
     let [ filename, extension ] = name.split('.');
     console.log(name, filename, extension);
     return filename + (extension === undefined ? '.json' : extension);
+  };
+
+  loadData = (): void => {
+    this.modalService.open('loadFile');
+  };
+
+  cancelLoadFile = (): void => {
+    this.modalService.close('loadFile');
+  };
+
+  onFileDropped = (files: any): void => {
+    const fileReader: FileReader = new FileReader();
+    fileReader.onload = (event: any): void => {
+      const result = JSON.parse(event.target.result);
+      this._structure = result;
+      this.storage.structureChange(this._structure!);
+    };
+    fileReader.readAsText(files.item(0));
+    this.modalService.close('loadFile');
   };
 
 }

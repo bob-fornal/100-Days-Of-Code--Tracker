@@ -12,7 +12,11 @@
   </span>
 
   <span class="toolbar-item">
-    <button class="btn" (click)="saveData()">Save Data</button>
+    <button class="btn" (click)="saveData()">Save File</button>
+  </span>
+
+  <span class="toolbar-item">
+    <button class="btn" (click)="loadData()">Load File</button>
   </span>
 </div>
 
@@ -59,5 +63,21 @@
   </div>
   <div class="modal-actions">
     <button class="btn" (click)="closeGetFilename()">Save</button>
+  </div>
+</days-modal>
+
+<days-modal id="loadFile">
+  <div class="modal-title">Load File</div>
+
+  <div class="modal-body">
+    <div class="drop-area" appDragAndDrop (fileDropped)="onFileDropped($event)">
+      <p>Upload a file with the file dialog or by dragging and dropping images onto the dashed region</p>
+      <input type="file" id="loadFileElement" accept="application/json" />
+      <label class="load-button" for="loadFileElement">Select some files</label>
+    </div>
+  </div>
+
+  <div class="modal-actions">
+    <button class="btn" (click)="cancelLoadFile()">Cancel</button>
   </div>
 </days-modal>
