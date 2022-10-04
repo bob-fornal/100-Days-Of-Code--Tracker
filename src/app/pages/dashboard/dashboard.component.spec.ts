@@ -1,14 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard.component';
 
-describe('DashboardComponent', () => {
+import { AppTitleComponent } from '@shared/_spec-tools/components/app-title.component.spec';
+import { DaysModalComponent } from '@shared/_spec-tools/components/days-modal.component.spec';
+import { ItemImageComponent } from '@shared/_spec-tools/components/item-image.component.spec';
+
+fdescribe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      imports: [
+        FormsModule
+      ],
+      declarations: [
+        DashboardComponent,
+
+        AppTitleComponent,
+        DaysModalComponent,
+        ItemImageComponent
+      ]
     })
     .compileComponents();
   });

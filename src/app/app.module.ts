@@ -25,12 +25,12 @@ import { DragAndDropDirective } from './shared/drag-and-drop/drag-and-drop.direc
     AppComponent,
     DashboardComponent,
     DetailsComponent,
-    GoalsComponent,
-    MenuComponent,
-    TitleComponent,
-    ItemImageComponent,
     DragAndDropDirective,
-    ImagesComponent
+    GoalsComponent,
+    ImagesComponent,
+    ItemImageComponent,
+    MenuComponent,
+    TitleComponent
   ],
   imports: [
     BrowserModule,
