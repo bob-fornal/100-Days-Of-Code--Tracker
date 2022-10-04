@@ -3,6 +3,29 @@
 
 <div class="toolbar">
   <span class="toolbar-item">
-    <button class="btn">+</button>
+    <button class="btn" (click)="addGoal()">+</button>
   </span>
 </div>
+
+<div class="goal-wrapper">
+  <div class="goal-card" *ngFor="let goal of goals">
+    <div class="done">{{ goal.done }}</div>
+    <div class="description">{{ goal.description }}</div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<days-modal id="getGoal">
+  <div class="modal-title">Add Goal</div>
+  <div class="modal-body">
+    <span class="content">
+      <input
+        id="goal"
+        placeholder="Goal"
+        [(ngModel)]="newGoal.description" />
+    </span>
+  </div>
+  <div class="modal-actions">
+    <button class="btn" (click)="closeGoalModal()">Save</button>
+  </div>
+</days-modal>

@@ -29,4 +29,18 @@ export class GoalsComponent {
     this._structure = { ...structure };
     this.goals = structure.goals;
   };
+
+  newGoal: Goal = { description: '', done: false };
+  addGoal = (): void => {
+    this.newGoal = { description: '', done: false };
+    this.modalService.open('getGoal');
+  };
+
+  closeGoalModal = (): void => {
+    this.goals.push({ ...this.newGoal });
+    this._structure!.goals = [ ...this.goals ];
+    this.storage.storeStructure(this._structure!);
+    this.modalService.close('getGoal');
+  };
+
 }

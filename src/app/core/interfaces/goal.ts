@@ -1,5 +1,5 @@
 
 export interface Goal {
-  goal: string;
+  description: string;
   done: boolean;
 }
