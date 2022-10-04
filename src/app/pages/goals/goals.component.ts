@@ -43,4 +43,10 @@ export class GoalsComponent {
     this.modalService.close('getGoal');
   };
 
+  toggleGoal = (index: number): void => {
+    this.goals[index].done = !this.goals[index].done;
+    this._structure!.goals = [ ...this.goals ];
+    this.storage.storeStructure(this._structure!);
+  };
+
 }

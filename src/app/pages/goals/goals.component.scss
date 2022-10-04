@@ -1,0 +1,38 @@
+
+.goal-wrapper {
+  display: flex;
+}
+
+.goal-card {
+  filter: drop-shadow(5px 5px 5px #00000055);
+  margin: 1em 0 0 1em;
+  padding: 0;
+  width: 30%;
+
+  .done {
+    border-top: 1px solid var(--color-off-black);
+    border-left: 1px solid var(--color-off-black);
+    border-right: 1px solid var(--color-off-black);
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    cursor: pointer;
+    padding: 1em;
+
+    &:not(.finished) {
+      background-color: var(--color-toolbar);
+    }
+    &.finished {
+      background-color: var(--color-highlight);
+    }
+  }
+
+  .description {
+    background-color: white;
+    border-bottom: 1px solid var(--color-off-black);
+    border-left: 1px solid var(--color-off-black);
+    border-right: 1px solid var(--color-off-black);
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    padding: 1em;
+  }
+}

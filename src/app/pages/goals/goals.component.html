@@ -8,8 +8,12 @@
 </div>
 
 <div class="goal-wrapper">
-  <div class="goal-card" *ngFor="let goal of goals">
-    <div class="done">{{ goal.done }}</div>
+  <div class="goal-card" *ngFor="let goal of goals; let i = index">
+    <div
+      class="done" [class.finished]="goal.done"
+      (click)="toggleGoal(i)">
+        {{ goal.done ? 'Complete' : 'Pending' }}
+    </div>
     <div class="description">{{ goal.description }}</div>
   </div>
 </div>
