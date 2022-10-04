@@ -19,7 +19,6 @@ import { TitleComponent } from './shared/title/title.component';
 import { ModalModule } from '@shared/modal/modal.module';
 
 import { DragAndDropDirective } from './shared/drag-and-drop.directive';
-import { ImagesComponent } from './shared/images/images.component';
 
 @NgModule({
   declarations: [
