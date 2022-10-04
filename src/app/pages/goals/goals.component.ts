@@ -49,4 +49,25 @@ export class GoalsComponent {
     this.storage.storeStructure(this._structure!);
   };
 
+  deleteGoal = (index: number): void => {
+    this.goals.splice(index, 1);
+    this._structure!.goals = [ ...this.goals ];
+    this.storage.storeStructure(this._structure!);
+  };
+
+  editIndex: number = -1;
+  editGoal = (index: number): void => {
+    this.editIndex = index;
+    this.newGoal = { ...this.goals[index] };
+    this.modalService.open('changeGoal');
+  };
+
+  closeChangeGoalModal = (): void => {
+    const index: number = this.editIndex;
+    this.goals[index] = { ...this.newGoal };
+    this._structure!.goals = [ ...this.goals ];
+    this.storage.storeStructure(this._structure!);
+    this.modalService.close('changeGoal');
+  };
+
 }

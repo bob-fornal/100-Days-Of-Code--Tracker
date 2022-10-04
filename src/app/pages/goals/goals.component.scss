@@ -10,12 +10,15 @@
   width: 30%;
 
   .done {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     border-top: 1px solid var(--color-off-black);
     border-left: 1px solid var(--color-off-black);
     border-right: 1px solid var(--color-off-black);
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
-    cursor: pointer;
     padding: 1em;
 
     &:not(.finished) {
@@ -23,6 +26,10 @@
     }
     &.finished {
       background-color: var(--color-highlight);
+    }
+
+    .image {
+      cursor: pointer;
     }
   }
 

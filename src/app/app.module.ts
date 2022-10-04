@@ -16,6 +16,7 @@ import { ItemImageComponent } from './shared/item-image/item-image.component';
 
 import { ModalModule } from '@shared/modal/modal.module';
 import { DragAndDropDirective } from './shared/drag-and-drop.directive';
+import { ImagesComponent } from './shared/images/images.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DragAndDropDirective } from './shared/drag-and-drop.directive';
     MenuComponent,
     TitleComponent,
     ItemImageComponent,
-    DragAndDropDirective
+    DragAndDropDirective,
+    ImagesComponent
   ],
   imports: [
     BrowserModule,

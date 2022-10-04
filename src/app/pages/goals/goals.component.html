@@ -9,10 +9,28 @@
 
 <div class="goal-wrapper">
   <div class="goal-card" *ngFor="let goal of goals; let i = index">
-    <div
-      class="done" [class.finished]="goal.done"
-      (click)="toggleGoal(i)">
-        {{ goal.done ? 'Complete' : 'Pending' }}
+    <div class="done" [class.finished]="goal.done === true">
+      <span class="text">{{ goal.done ? 'Complete' : 'Pending' }}</span>
+      <span class="right">
+        <app-images
+          class="image"
+          *ngIf="goal.done === false"
+          type="check-green"
+          (click)="toggleGoal(i)"></app-images>
+        <app-images
+          class="image"
+          *ngIf="goal.done === true"
+          type="check-gray"
+          (click)="toggleGoal(i)"></app-images>
+        <app-images
+          class="image"
+          type="edit"
+          (click)="editGoal(i)"></app-images>
+        <app-images
+          class="image"
+          type="delete"
+          (click)="deleteGoal(i)"></app-images>  
+      </span>
     </div>
     <div class="description">{{ goal.description }}</div>
   </div>
@@ -31,5 +49,20 @@
   </div>
   <div class="modal-actions">
     <button class="btn" (click)="closeGoalModal()">Save</button>
+  </div>
+</days-modal>
+
+<days-modal id="changeGoal">
+  <div class="modal-title">Edit Goal</div>
+  <div class="modal-body">
+    <span class="content">
+      <input
+        id="goal"
+        placeholder="Goal"
+        [(ngModel)]="newGoal.description" />
+    </span>
+  </div>
+  <div class="modal-actions">
+    <button class="btn" (click)="closeChangeGoalModal()">Save</button>
   </div>
 </days-modal>
