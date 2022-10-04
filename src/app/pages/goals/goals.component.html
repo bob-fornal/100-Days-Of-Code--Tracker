@@ -1,2 +1,35 @@
 
 <app-title>Goals</app-title>
+
+<div class="toolbar">
+  <span class="toolbar-item">
+    <button class="btn" (click)="addGoal()">+</button>
+  </span>
+</div>
+
+<div class="goal-wrapper">
+  <div class="goal-card" *ngFor="let goal of goals; let i = index">
+    <div
+      class="done" [class.finished]="goal.done"
+      (click)="toggleGoal(i)">
+        {{ goal.done ? 'Complete' : 'Pending' }}
+    </div>
+    <div class="description">{{ goal.description }}</div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<days-modal id="getGoal">
+  <div class="modal-title">Add Goal</div>
+  <div class="modal-body">
+    <span class="content">
+      <input
+        id="goal"
+        placeholder="Goal"
+        [(ngModel)]="newGoal.description" />
+    </span>
+  </div>
+  <div class="modal-actions">
+    <button class="btn" (click)="closeGoalModal()">Save</button>
+  </div>
+</days-modal>

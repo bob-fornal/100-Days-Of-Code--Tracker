@@ -11,6 +11,7 @@
 .detail {
 
   .card {
+    filter: drop-shadow(5px 5px 5px #00000055);
     align-items: start;
     display: flex;
     flex-direction: row;

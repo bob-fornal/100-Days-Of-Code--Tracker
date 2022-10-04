@@ -1,14 +1,4 @@
 
-.toolbar {
-  background-color: var(--color-toolbar);
-  margin-top: 0.5em;
-  padding: 0.5em 1em;
-
-  .toolbar-item {
-    margin-left: 1em;
-  }
-}
-
 .days {
 
   .day {
@@ -74,6 +64,50 @@
     .number {
       display: block;
       text-align: center;
+    }
+  }
+}
+
+.goals {
+  margin-top: 1em;
+  
+  .goal {
+    filter: drop-shadow(5px 5px 5px #00000055);
+    margin: 0 0 1em 0;
+    padding: 0;
+
+    .status {
+      display: inline-block;
+
+      border-left: 1px solid var(--color-off-black);
+      border-top: 1px solid var(--color-off-black);
+      border-bottom: 1px solid var(--color-off-black);
+      border-top-left-radius: 0.5em;
+      border-bottom-left-radius: 0.5em;
+      cursor: pointer;
+      padding: 0.5em 1em;
+
+      &:not(.finished) {
+        background-color: var(--color-toolbar);
+        color: var(--color-toolbar);
+      }
+      &.finished {
+        background-color: var(--color-highlight);
+        color: var(--color-highlight);
+      }
+    }
+
+    .description {
+      display: inline-block;
+      width: calc(100% - 2.75em);
+
+      background-color: var(--color-off-white);
+      border-right: 1px solid var(--color-off-black);
+      border-top: 1px solid var(--color-off-black);
+      border-bottom: 1px solid var(--color-off-black);
+      border-top-right-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+      padding: 0.5em 1em;
     }
   }
 }

@@ -1,9 +1,10 @@
 
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ModalService } from '@shared/modal';
 import { StorageService } from '@core/services/storage.service';
 
+import { Goal } from '@core/interfaces/goal';
 import { Item } from '@core/interfaces/item';
 import { Structure } from '@core/interfaces/strucuture';
 
@@ -15,9 +16,11 @@ import { Structure } from '@core/interfaces/strucuture';
 })
 export class DashboardComponent {
 
+  useGoals: boolean = true;
   useNotes: boolean = true;
 
   days: Array<Item> = [];
+  goals: Array<Goal> = [];
   _structure: Structure | null = null;
 
   constructor(
@@ -29,14 +32,30 @@ export class DashboardComponent {
 
   handleStructureChange = (structure: Structure): void => {
     this._structure = { ...structure };
-    this.days = structure.days;
+    
+    this.useGoals = structure.useGoals;
     this.useNotes = structure.useNotes;
+    
+    this.days = structure.days;
+    this.goals = structure.goals;
+  };
+
+  toggleUseGoals = (): void => {
+    const useGoals: boolean = !this._structure!.useGoals;
+    this._structure!.useGoals = useGoals;
+    this.storage.structureChange(this._structure!);
   };
 
   toggleUseNotes = (): void => {
     const useNotes: boolean = !this._structure!.useNotes;
     this._structure!.useNotes = useNotes;
     this.storage.structureChange(this._structure!);
+  };
+
+  toggleGoal = (index: number): void => {
+    this.goals[index].done = !this.goals[index].done;
+    this._structure!.goals = [ ...this.goals ];
+    this.storage.storeStructure(this._structure!);
   };
 
   selectedDay: Item = { number: -1, done: false, note: '' };

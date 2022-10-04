@@ -35,6 +35,16 @@ body {
   }
 }
 
+.toolbar {
+  background-color: var(--color-toolbar);
+  margin-top: 0.5em;
+  padding: 0.5em 1em;
+
+  .toolbar-item {
+    margin-left: 1em;
+  }
+}
+
 .modal-title {
   font-weight: bold;
   font-size: 2em;
@@ -54,7 +64,8 @@ body {
   border-radius: 10px;
   font-size: 17px;
   font-weight: 700;
-  color: white;
+  color: var(--color-off-white);
+  cursor: pointer;
 
   &:not(:hover) {
     background: var(--color-button);

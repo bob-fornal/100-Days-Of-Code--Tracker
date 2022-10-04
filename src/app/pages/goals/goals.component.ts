@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component } from '@angular/core';
+
+import { ModalService } from '@shared/modal/modal.service';
+import { StorageService } from '@core/services/storage.service';
+
+import { Goal } from '@core/interfaces/goal';
+import { Structure } from '@core/interfaces/strucuture';
 
 @Component({
   selector: 'app-goals',
@@ -6,11 +13,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./goals.component.scss'],
   host: {'class': 'wrapper--content'}
 })
-export class GoalsComponent implements OnInit {
+export class GoalsComponent {
 
-  constructor() { }
+  goals: Array<Goal> = [];
+  _structure: Structure | null = null;
 
-  ngOnInit(): void {
+  constructor(
+    private modalService: ModalService,
+    private storage: StorageService
+  ) {
+    this.storage.structure.subscribe(this.handleStructureChange);
   }
+
+  handleStructureChange = (structure: Structure): void => {
+    this._structure = { ...structure };
+    this.goals = structure.goals;
+  };
+
+  newGoal: Goal = { description: '', done: false };
+  addGoal = (): void => {
+    this.newGoal = { description: '', done: false };
+    this.modalService.open('getGoal');
+  };
+
+  closeGoalModal = (): void => {
+    this.goals.push({ ...this.newGoal });
+    this._structure!.goals = [ ...this.goals ];
+    this.storage.storeStructure(this._structure!);
+    this.modalService.close('getGoal');
+  };
+
+  toggleGoal = (index: number): void => {
+    this.goals[index].done = !this.goals[index].done;
+    this._structure!.goals = [ ...this.goals ];
+    this.storage.storeStructure(this._structure!);
+  };
 
 }
