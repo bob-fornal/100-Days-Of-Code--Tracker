@@ -1,6 +1,14 @@
 
 <app-title>Details</app-title>
 
+<div class="toolbar">
+  <span class="toolbar-item">
+    <button class="btn" (click)="toggleEdit()">
+      {{ editVisible === true ? 'View' : 'Edit' }}
+    </button>
+  </span>
+</div>
+
 <div class="details">
   <!-- Not Done -->
   <div class="detail-wrapper">
@@ -30,14 +38,20 @@
           <span class="day">{{ day.number }}</span>
 
           <span class="content">
-            <textarea
+            <textarea *ngIf="editVisible === true"
               [id]="'note-' + i" class="textarea"
               placeholder="Note"
               [(ngModel)]="day.note"
               rows="5" cols="24"></textarea>
+            <div *ngIf="editVisible === false"
+              class="content-view">
+              {{ day.note }}
+            </div>  
           </span>
 
-          <button class="btn" (click)="saveNote(i)">Save</button>
+          <button *ngIf="editVisible === true"
+            class="btn"
+            (click)="saveNote(i)">Save</button>
         </div>
       </ng-container>
     </div>

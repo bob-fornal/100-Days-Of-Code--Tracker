@@ -14,6 +14,8 @@ import { Structure } from '@core/interfaces/strucuture';
 })
 export class DetailsComponent {
 
+  editVisible: boolean = false;
+
   days: Array<Item> = [];
   _structure: Structure | null = null;
 
@@ -26,6 +28,10 @@ export class DetailsComponent {
   handleStructureChange = (structure: Structure): void => {
     this._structure = { ...structure };
     this.days = structure.days;
+  };
+
+  toggleEdit = (): void => {
+    this.editVisible = !this.editVisible;
   };
 
   saveNote = (index: number): void => {
