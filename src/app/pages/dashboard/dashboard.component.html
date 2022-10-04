@@ -12,12 +12,30 @@
   </span>
 
   <span class="toolbar-item">
+    <input
+      type="checkbox" id="useGoalsInput"
+      [(ngModel)]="useGoals"
+      [ngModelOptions]="{ standalone: true }"
+      (change)="toggleUseGoals()" />
+    <label for="useGoalsInput">Use Goals</label>
+  </span>
+
+  <span class="toolbar-item">
     <button class="btn" (click)="saveData()">Save File</button>
   </span>
 
   <span class="toolbar-item">
     <button class="btn" (click)="loadData()">Load File</button>
   </span>
+</div>
+
+<div class="goals" *ngIf="useGoals === true">
+  <div class="goal" *ngFor="let goal of goals; let i = index;">
+    <span
+      class="status" [class.finished]="goal.done === true"
+      (click)="toggleGoal(i)">.</span>
+    <span class="description">{{ goal.description }}</span>
+  </div>
 </div>
 
 <div class="days">

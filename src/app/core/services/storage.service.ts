@@ -14,6 +14,7 @@ export class StorageService {
 
   generateBlank = (numberOfDays: number = 100): Structure => {
     const structure: Structure = {
+      useGoals: true,
       useNotes: true,
       days: [],
       goals: []
