@@ -55,7 +55,7 @@ export class DashboardComponent {
   toggleGoal = (index: number): void => {
     this.goals[index].done = !this.goals[index].done;
     this._structure!.goals = [ ...this.goals ];
-    this.storage.storeStructure(this._structure!);
+    this.storage.structureChange(this._structure!);
   };
 
   selectedDay: Item = { number: -1, done: false, note: '' };
@@ -64,15 +64,19 @@ export class DashboardComponent {
     const isDone: boolean = !this._structure!.days[index].done;
 
     this._structure!.days[index].done = isDone;
-    if (this.useNotes === false) {
-      this.storage.structureChange(this._structure!);
-    } else if (isDone === true && this._structure!.days[index].note === '') {
-      this.selectedDay = { ...this._structure!.days[index] };
-      this.selectedIndex = index;
-      this.modalService.open('getNotesModal');
-    } else {
-      this._structure!.days[index].note = '';
-      this.storage.structureChange(this._structure!);
+    switch (true) {
+      case (this.useNotes === false):
+        this.storage.structureChange(this._structure!);
+        break;
+      case (isDone === true && this._structure!.days[index].note === ''):
+        this.selectedDay = { ...this._structure!.days[index] };
+        this.selectedIndex = index;
+        this.modalService.open('getNotesModal');
+        break;
+      default:
+        this._structure!.days[index].note = '';
+        this.storage.structureChange(this._structure!);
+        break;
     }
   };
 
@@ -84,33 +88,36 @@ export class DashboardComponent {
 
   selectFilename: string = '';
   saveData = (): void => {
-    const date: string = (new Date()).toISOString().split('T')[0];
-    this.selectFilename = '100DaysOfCode--' + date + '.json';
+    this.setFilename(new Date().toISOString().split('T')[0]);
     this.modalService.open('getFilename');
+  };
+
+  setFilename = (date: string): void => {
+    this.selectFilename = '100DaysOfCode--' + date + '.json';
   };
 
   closeGetFilename = (): void => {
     const filename: string = this.checkFilename(this.selectFilename);
-    console.log(filename);
 
     const a = document.createElement('a');
-    const blob = new Blob([JSON.stringify(this._structure!, null, 2)], { type: 'application/json' });
-    a.href = URL.createObjectURL(blob);
-    
-    a.setAttribute('download', filename);
-    console.log(filename);
-
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    this.processDownload(document, a, filename);
 
     this.modalService.close('getFilename');
   };
 
+  processDownload = (document: any, a: any, filename: string): void => {
+    const blob = new Blob([JSON.stringify(this._structure!, null, 2)], { type: 'application/json' });
+    a.href = URL.createObjectURL(blob);
+    a.setAttribute('download', filename);
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   checkFilename = (name: string): string => {
     let [ filename, extension ] = name.split('.');
-    console.log(name, filename, extension);
-    return filename + (extension === undefined ? '.json' : extension);
+    return filename + (extension === undefined ? '.json' : '.' + extension);
   };
 
   loadData = (): void => {
@@ -122,14 +129,24 @@ export class DashboardComponent {
   };
 
   onFileDropped = (files: any): void => {
-    const fileReader: FileReader = new FileReader();
-    fileReader.onload = (event: any): void => {
-      const result = JSON.parse(event.target.result);
-      this._structure = result;
-      this.storage.structureChange(this._structure!);
-    };
-    fileReader.readAsText(files.item(0));
+    this.processFileRead(FileReader, files);
     this.modalService.close('loadFile');
+  };
+
+  processFileRead = (FileReader: any, files: any): void => {
+    const fileReader: any = new FileReader();
+    this.processFileReader(fileReader, files);
+  };
+
+  processFileReader = (fileReader: any, files: any): void => {
+    fileReader.onload = this.processOnLoad;
+    fileReader.readAsText(files.item(0));
+  };
+
+  processOnLoad = (event: any): void => {
+    const result = JSON.parse(event.target.result);
+    this._structure = result;
+    this.storage.structureChange(this._structure!);
   };
 
 }

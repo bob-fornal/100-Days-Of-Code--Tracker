@@ -1,14 +1,25 @@
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { DetailsComponent } from './details.component';
 
-describe('DetailsComponent', () => {
+import { AppTitleComponent } from '@shared/_spec-tools/components/app-title.component.spec';
+
+fdescribe('DetailsComponent', () => {
   let component: DetailsComponent;
   let fixture: ComponentFixture<DetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DetailsComponent ]
+      imports: [
+        FormsModule
+      ],
+      declarations: [
+        DetailsComponent,
+
+        AppTitleComponent
+      ]
     })
     .compileComponents();
   });
