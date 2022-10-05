@@ -8,8 +8,6 @@ export class DragAndDropDirective {
   @HostBinding('class.highlight') fileOver: boolean = false;
   @Output() fileDropped = new EventEmitter<any>();
 
-  constructor() { }
-
   @HostListener('dragover', ['$event'])
   onDragOver(event: any) {
     event.preventDefault();
@@ -35,6 +33,5 @@ export class DragAndDropDirective {
       this.fileDropped.emit(files);
     }
   }
-
 
 }
