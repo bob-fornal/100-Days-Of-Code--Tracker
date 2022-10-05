@@ -14,6 +14,7 @@ import { Structure } from '@core/interfaces/strucuture';
 })
 export class DetailsComponent {
 
+  useNotes: boolean = true;
   editVisible: boolean = false;
 
   days: Array<Item> = [];
@@ -27,19 +28,24 @@ export class DetailsComponent {
 
   handleStructureChange = (structure: Structure): void => {
     this._structure = { ...structure };
+    this.useNotes = structure.useNotes;
     this.days = structure.days;
+  };
+
+  toggleUseNotes = (): void => {
+    const useNotes: boolean = !this._structure!.useNotes;
+    this._structure!.useNotes = useNotes;
+    this.storage.structureChange(this._structure!);
   };
 
   toggleEdit = (): void => {
     this.editVisible = !this.editVisible;
   };
 
-  saveNote = (index: number): void => {
-    const id: string = `note-${ index }`;
-    const value = (<HTMLInputElement>document.getElementById(id)).value;
-    if (value.length === 0) return;
+  saveNote = (index: number, note: string): void => {
+    if (this.useNotes === true && note.length === 0) return;
 
-    this._structure!.days[index].note = value;
+    this._structure!.days[index].note = note;
     this._structure!.days[index].done = true;
     this.storage.structureChange(this._structure!);
   };
