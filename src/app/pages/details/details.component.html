@@ -3,6 +3,15 @@
 
 <div class="toolbar">
   <span class="toolbar-item">
+    <input
+      type="checkbox" id="useNotesInput"
+      [(ngModel)]="useNotes"
+      [ngModelOptions]="{ standalone: true }"
+      (change)="toggleUseNotes()" />
+    <label for="useNotesInput">Use Notes</label>
+  </span>
+  
+  <span class="toolbar-item">
     <button class="btn" (click)="toggleEdit()">
       {{ editVisible === true ? 'View' : 'Edit' }}
     </button>
@@ -25,7 +34,7 @@
               rows="5" cols="24"></textarea>
           </span>
 
-          <button class="btn" (click)="saveNote(i)">Save</button>
+          <button class="btn" (click)="saveNote(i, day.note)">Save</button>
         </div>
       </ng-container>
     </div>
@@ -51,7 +60,7 @@
 
           <button *ngIf="editVisible === true"
             class="btn"
-            (click)="saveNote(i)">Save</button>
+            (click)="saveNote(i, day.note)">Save</button>
         </div>
       </ng-container>
     </div>

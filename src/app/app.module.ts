@@ -18,19 +18,19 @@ import { TitleComponent } from './shared/title/title.component';
 
 import { ModalModule } from '@shared/modal/modal.module';
 
-import { DragAndDropDirective } from './shared/drag-and-drop.directive';
+import { DragAndDropDirective } from './shared/drag-and-drop/drag-and-drop.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     DetailsComponent,
-    GoalsComponent,
-    MenuComponent,
-    TitleComponent,
-    ItemImageComponent,
     DragAndDropDirective,
-    ImagesComponent
+    GoalsComponent,
+    ImagesComponent,
+    ItemImageComponent,
+    MenuComponent,
+    TitleComponent
   ],
   imports: [
     BrowserModule,
