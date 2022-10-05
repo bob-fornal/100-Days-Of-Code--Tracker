@@ -9,6 +9,7 @@ import { ModalService } from './modal.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit, OnDestroy {
+  
     @Input() id: string = '';
     private element: any;
 
