@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --code-coverage",
     "test:action": "ng test --browsers=ChromeHeadless --progress=false --watch=false --code-coverage --source-map=false",
     "deploy": "ng build --base-href /100-Days-Of-Code--Tracker/"
   },
