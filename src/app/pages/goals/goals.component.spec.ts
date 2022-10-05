@@ -10,7 +10,7 @@ import { DaysModalComponent } from '@shared/_spec-tools/components/days-modal.co
 import { Goal } from '@core/interfaces/goal';
 import { Structure } from '@core/interfaces/strucuture';
 
-fdescribe('GoalsComponent', () => {
+describe('GoalsComponent', () => {
   let component: GoalsComponent;
   let fixture: ComponentFixture<GoalsComponent>;
 
