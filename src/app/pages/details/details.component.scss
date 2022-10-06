@@ -36,6 +36,13 @@
     }
     .content {
       flex-grow: 5;
+
+      .content-view {
+        white-space: pre-wrap;
+        border-left: 1px solid var(--color-off-black);
+        padding-left: 1em;
+        margin-left: 0.5em;
+      }
     }
     .btn {
       flex-grow: 2;
