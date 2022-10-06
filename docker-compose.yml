@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  server:
+    image: 100daysofcode
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "1337:80"
+    restart: always
+    networks:
+      - default
+networks:
+  default:
+
