@@ -264,6 +264,23 @@ describe('DashboardComponent', () => {
     expect(component['modalService'].close).toHaveBeenCalledWith('loadFile');
   });
 
+  it('expects "onFileSelected" to pass the files to onFileDropped', () => {
+    const file: File = new File([''], 'filename', { type: 'text/html' });
+    const event: any = { target: { files: [file] } };
+    spyOn(component, 'onFileDropped').and.stub();
+
+    component.onFileSelected(event);
+    expect(component.onFileDropped).toHaveBeenCalledWith([file]);
+  });
+
+  it('expects "onFileSelected" to not pass the files to onFileDropped when null', () => {
+    const event: any = { target: { files: null } };
+    spyOn(component, 'onFileDropped').and.stub();
+
+    component.onFileSelected(event);
+    expect(component.onFileDropped).not.toHaveBeenCalled();
+  });
+
   it('expects "onFileDropped" to process the file and close the modal', () => {
     const files: any = {
       item: (index: number): string => 'FILE-OBJECT'
