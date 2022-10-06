@@ -3,7 +3,7 @@
 
 <div class="toolbar">
   <span class="toolbar-item">
-    <button class="btn" (click)="addGoal()">+</button>
+    <button class="btn" (click)="addGoal()">Add Goal</button>
   </span>
 </div>
 
@@ -42,8 +42,8 @@
   <div class="modal-body">
     <span class="content">
       <input
-        id="goal"
-        placeholder="Goal"
+        id="add-goal"
+        placeholder="Goal" class="goal"
         [(ngModel)]="newGoal.description" />
     </span>
   </div>
@@ -57,7 +57,7 @@
   <div class="modal-body">
     <span class="content">
       <input
-        id="goal"
+        id="edit-goal" class="goal"
         placeholder="Goal"
         [(ngModel)]="newGoal.description" />
     </span>
