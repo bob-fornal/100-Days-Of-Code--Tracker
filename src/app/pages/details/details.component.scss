@@ -36,6 +36,10 @@
     }
     .content {
       flex-grow: 5;
+
+      .content-view {
+        white-space: pre-wrap;
+      }
     }
     .btn {
       flex-grow: 2;
