@@ -128,6 +128,12 @@ export class DashboardComponent {
     this.modalService.close('loadFile');
   };
 
+  onFileSelected = (event: Event): void => {
+    const element = event.target as HTMLInputElement;
+    const files: any = element.files;
+    if (files !== null) this.onFileDropped(files);
+  };
+
   onFileDropped = (files: any): void => {
     this.processFileRead(FileReader, files);
     this.modalService.close('loadFile');

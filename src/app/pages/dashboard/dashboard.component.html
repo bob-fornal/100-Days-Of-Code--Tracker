@@ -90,7 +90,7 @@
   <div class="modal-body">
     <div class="drop-area" appDragAndDrop (fileDropped)="onFileDropped($event)">
       <p>Upload a file with the file dialog or by dragging and dropping images onto the dashed region</p>
-      <input type="file" id="loadFileElement" accept="application/json" />
+      <input type="file" id="loadFileElement" accept="application/json" (change)="onFileSelected($event)" />
       <label class="load-button" for="loadFileElement">Select some files</label>
     </div>
   </div>
