@@ -31,10 +31,11 @@
         background-color: var(--color-tooltip);
         color: var(--color-off-white);
         
-        text-align: center;
+        text-align: left;
         border-radius: 6px;
         padding: 1em;
         transition: opacity .6s;
+        white-space: pre-wrap;
         
         /* Position the tooltip */
         position: absolute;
