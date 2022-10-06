@@ -10,6 +10,20 @@ This project is designed to track progress within #100DaysOfCode.
 
 The data for this application is stored in LocalStorage. It can be saved and loaded as a JSON file.
 
+## Run with Docker
+If you have docker installed on your system (or on your prod env) you can run it easily with:
+```bash
+docker-compose up -d 
+```
+
+The tracker will be available at http://localhost:1337/. This is changeable within the docker-compose.yml. 
+
+Just change this line to what port you want to use:
+```yaml
+    ports:
+      - "1337:80"
+```
+
 ## Project Development Notes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
