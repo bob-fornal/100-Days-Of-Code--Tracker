@@ -48,6 +48,67 @@ describe('GoalsComponent', () => {
     expect(component.goals).toEqual(structure.goals);
   });
 
+  it('expects "onDragStart" to set dragging index', () => {
+    const index: number = 1;
+
+    component.onDragStart(index);
+    expect(component.draggingIndex).toEqual(1);
+  });
+
+  it('expects "onDragEnter" to do nothing if dragging index equals new index', () => {
+    const index: number = 1;
+    component.draggingIndex = 1;
+    spyOn(component, 'reorderItems').and.stub();
+
+    component.onDragEnter(index);
+    expect(component.reorderItems).not.toHaveBeenCalled();
+  });
+
+  it('expects "onDragEnter" to reorder items if dragging index does not equal new index', () => {
+    const index: number = 1;
+    component.draggingIndex = 0;
+    spyOn(component, 'reorderItems').and.stub();
+
+    component.onDragEnter(index);
+    expect(component.reorderItems).toHaveBeenCalledWith(0, 1);
+  });
+
+  it('expects "onDragEnd" to clear the dragging index and store data', () => {
+    const structure: Structure = {
+      useGoals: false,
+      useNotes: false,
+      days: [{ number: 1, note: 'NOTE', done: false }],
+      goals: [{ description: 'DESCRIPTION', done: false }]
+    };
+    component._structure = structure;
+    component.goals = structure.goals;
+    spyOn(component['storage'], 'storeStructure').and.stub();
+    component.draggingIndex = 0;
+
+    component.onDragEnd();
+    expect(component.draggingIndex).toEqual(-1);
+    expect(component['storage'].storeStructure).toHaveBeenCalled();
+  });
+
+  it('expects "reorderItems" to adjust the goals', () => {
+    const goals: Array<Goal> = [
+      { description: 'first', done: false },
+      { description: 'second', done: false },
+      { description: 'third', done: false },
+      { description: 'fourth', done: false }
+    ];
+    const expected: Array<Goal> = [
+      { description: 'first', done: false },
+      { description: 'third', done: false },
+      { description: 'second', done: false },
+      { description: 'fourth', done: false }
+    ];
+    component.goals = goals;
+
+    component.reorderItems(1, 2);
+    expect(component.goals).toEqual(expected);
+  });
+
   it('expects "addGoal" to clear the newGoal variable and open the modal', () => {
     const expected: Goal = { description: '', done: false };
     component.newGoal = { description: 'DESCRIPTION', done: false };

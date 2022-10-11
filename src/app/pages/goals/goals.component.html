@@ -8,8 +8,15 @@
 </div>
 
 <div class="goal-wrapper">
-  <div class="goal-card" *ngFor="let goal of goals; let i = index">
+  <div *ngFor="let goal of goals; let i = index"
+    class="goal-card drag-wrapper"
+    [class.dragging]="i === draggingIndex"
+    [draggable]="true"
+    (dragstart)="onDragStart(i)"
+    (dragenter)="onDragEnter(i)"
+    (dragend)="onDragEnd()">
     <div class="done" [class.finished]="goal.done === true">
+      <span class="copyable"><app-images type="copyable"></app-images></span>
       <span class="text">{{ goal.done ? 'Complete' : 'Pending' }}</span>
       <span class="right">
         <app-images
