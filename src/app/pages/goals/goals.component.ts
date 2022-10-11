@@ -18,6 +18,8 @@ export class GoalsComponent {
   goals: Array<Goal> = [];
   _structure: Structure | null = null;
 
+  draggingIndex: number = -1;
+
   constructor(
     private modalService: ModalService,
     private storage: StorageService
@@ -28,6 +30,27 @@ export class GoalsComponent {
   handleStructureChange = (structure: Structure): void => {
     this._structure = { ...structure };
     this.goals = structure.goals;
+  };
+
+  onDragStart = (fromIndex: number): void => {
+    this.draggingIndex = fromIndex;
+  };
+
+  onDragEnter = (toIndex: number): void => {
+    if (this.draggingIndex === toIndex) return;
+    this.reorderItems(this.draggingIndex, toIndex);
+  };
+
+  onDragEnd = (): void => {
+    this.draggingIndex = -1;
+    this._structure!.goals = [ ...this.goals ];
+    this.storage.storeStructure(this._structure!);
+  };
+
+  reorderItems = (fromIndex: number, toIndex: number): void => {
+    const item = this.goals.splice(fromIndex, 1)[0];
+    this.goals.splice(toIndex, 0, item);
+    this.draggingIndex = toIndex;
   };
 
   newGoal: Goal = { description: '', done: false };

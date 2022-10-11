@@ -3,6 +3,13 @@
   display: flex;
 }
 
+.drag-wrapper {
+
+  &.dragging {
+    opacity: 0.5;
+  }
+}
+
 .goal-card {
   filter: drop-shadow(5px 5px 5px #00000055);
   margin: 1em 0 0 1em;
@@ -12,7 +19,6 @@
   .done {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     border-top: 1px solid var(--color-off-black);
     border-left: 1px solid var(--color-off-black);
@@ -20,6 +26,16 @@
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
     padding: 1em;
+
+    .copyable,
+    .text {
+      flex-grow: 0;
+      margin-right: 0.25em;
+    }
+    .right {
+      flex-grow: 1;
+      text-align: right;
+    }
 
     &:not(.finished) {
       background-color: var(--color-toolbar);
