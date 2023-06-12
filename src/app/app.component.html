@@ -1,5 +1,6 @@
 
 <div class="wrapper">
+  <img [src]="getDeleteImage()" (click)="onClick($event)" />
   <app-menu class="wrapper--menu"></app-menu>
   <router-outlet></router-outlet>  
 </div>

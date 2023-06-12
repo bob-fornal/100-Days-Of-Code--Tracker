@@ -1,19 +1,9 @@
 
 <nav>
   <ul class="vertical">
-    <li>
-      <a routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">
-        Dashboard
-      </a>
-    </li>
-    <li>
-      <a routerLink="/details" routerLinkActive="active" ariaCurrentWhenActive="page">
-        Details
-      </a>
-    </li>
-    <li>
-      <a routerLink="/goals" routerLinkActive="active" ariaCurrentWhenActive="page">
-        Goals
+    <li *ngFor="let item of menu">
+      <a [routerLink]="item.link" routerLinkActive="active" ariaCurrentWhenActive="page">
+        {{ item.title }}
       </a>
     </li>
   </ul>
